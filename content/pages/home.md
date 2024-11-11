@@ -18,27 +18,23 @@ blocks:
     backgroundColor: '#111827'
     _template: welcomeHero
   - cardblock:
-      - headline: Item 2
-        coverimage: /images/micheile-henderson-SoT4-mZhyhE-unsplash.jpg
-        content: |
-          * one
-          * two
-          * three
-      - headline: Item 1
+      - headline: Kudoshin Sogo Ryu Bujutsu
+        coverimage: /images/art1.png
+        content: >
+          Kudoshin Sogo Ryu Bujutsu. An art with roots in Shorinji Kempo and
+          Daito-ryu and later Taka-ryu. The art encompasses various components
+          of classic systems.
+      - headline: Traditional Kung Fu and Taiji
         coverimage: /images/lms-image-GaaFkDYJQ9gmTXSZLtgbLTXAy2qDs8.jpg
-        content: |
-          * lesson 1
-          * lesson 2
-
-          ### My favourite course
+        content: >
+          Chinese Kung Fu with 10 Animal Style (Xinyiliuhe), Chinese
+          Yoga/Meditation with Shaolin 18 Lohan Palm and Drunken Fist/Shaolin
+          (Zuiquan)
         links:
-          - link: /myurl
-            label: Link
-            style: simple
-          - link: /mypage
-            label: Register
+          - link: /classes-kungfu
+            label: Learn More
             style: button
-    gridTitle: My cards
+    gridTitle: Arts Taught
     _template: cardgrid
   - headline: Page title
     content: |
