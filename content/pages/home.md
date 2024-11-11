@@ -1,6 +1,22 @@
 ---
 title: Welcome
 blocks:
+  - title: Sengoku Martial Arts’ parent style is Japanese Bujutsu
+    message: |
+      ## We now offer traditional Kung Fu
+
+      We have been in existence since 1991
+    links:
+      - link: /classes
+        label: Our Classes
+        style: button
+      - link: /location
+        label: Location
+        style: button
+    backgroundType: color
+    backgroundImage: /images/background.png
+    backgroundColor: '#DDDDDD'
+    _template: welcomeHero
   - cardblock:
       - headline: Item 2
         coverimage: /images/micheile-henderson-SoT4-mZhyhE-unsplash.jpg
@@ -35,20 +51,6 @@ blocks:
 
       Hello world
     _template: pageContent
-  - title: Welcome to our site
-    message: |
-      What we do and how we can serve you
-    links:
-      - link: /contact
-        label: Let's go
-        style: button
-      - link: /contact
-        label: Contact Us
-        style: button
-    backgroundType: color
-    backgroundImage: /images/micheile-henderson-SoT4-mZhyhE-unsplash.jpg
-    backgroundColor: '#DDDDDD'
-    _template: welcomeHero
   - Posts:
       - label: Announcement
         featuredPost: content/posts/call-themes.md
