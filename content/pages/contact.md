@@ -1,9 +1,9 @@
 ---
 title: Contact Us
 blocks:
-  - title: Hello world
-    message: |
-      # Hello
-    _template: welcomeHero
+  - headline: Contact Us
+    content: ''
+    backgroundImage: /images/dojo-arc.jpeg
+    _template: coverSection
 ---
 
