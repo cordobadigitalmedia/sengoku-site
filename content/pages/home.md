@@ -15,7 +15,7 @@ blocks:
         style: button
     backgroundType: color
     backgroundImage: /images/background.png
-    backgroundColor: '#DDDDDD'
+    backgroundColor: '#111827'
     _template: welcomeHero
   - cardblock:
       - headline: Item 2
