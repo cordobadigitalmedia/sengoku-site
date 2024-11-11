@@ -24,6 +24,10 @@ blocks:
           Kudoshin Sogo Ryu Bujutsu. An art with roots in Shorinji Kempo and
           Daito-ryu and later Taka-ryu. The art encompasses various components
           of classic systems.
+        links:
+          - link: /classes-kudoshin
+            label: Learn More
+            style: button
       - headline: Traditional Kung Fu and Taiji
         coverimage: /images/lms-image-GaaFkDYJQ9gmTXSZLtgbLTXAy2qDs8.jpg
         content: >
