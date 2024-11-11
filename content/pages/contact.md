@@ -5,6 +5,20 @@ blocks:
     content: ''
     backgroundImage: /images/dojo-arc.jpeg
     _template: coverSection
-  - _template: pageContent
+  - content: >
+      ## E-mail
+
+
+      *
+      [sengokumartialartscenter@gmail.com](mailto:sengokumartialartscenter@gmail.com)
+
+
+      ## Phone
+
+
+      * +1 (825) 440 2547
+
+      * +1 (780) 667-2705
+    _template: pageContent
 ---
 
