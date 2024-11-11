@@ -24,6 +24,13 @@ blocks:
       * Bojutsu/Jojutsu: Using the staff
 
       * Kyujutsu: Archery
+
+
+      ## Class Schedule
+
+
+      All classes below are held at [33 Rayborn Crescent, St.
+      Albert](https://maps.app.goo.gl/nZ8xs9usNwPWfFJK9)
     _template: pageContent
   - cardblock:
       - headline: Kudoshin Traditional Jujutsu
