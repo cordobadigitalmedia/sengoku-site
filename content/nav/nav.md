@@ -6,8 +6,10 @@ links:
     linkType: page
   - label: Blog
     link: /blog
-    linkedPage: ''
     linkType: relative
+  - label: Gallery
+    linkedPage: content/pages/gallery.md
+    linkType: page
   - label: Contact
     link: /contact
     linkedPage: content/pages/contact.md
