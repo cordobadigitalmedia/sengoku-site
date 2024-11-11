@@ -382,7 +382,30 @@ export default defineConfig({
             label: "Logo",
             type: "image",
           },
-          { name: "siteTitle", label: "Site Title", type: "string" },
+          {
+            name: "logoTitle",
+            label: "Logo Title",
+            description: "Show a title next to the logo",
+            type: "string",
+          },
+          {
+            name: "siteTitle",
+            label: "Site Title",
+            type: "string",
+            description: "used for SEO title",
+          },
+          {
+            name: "siteDescription",
+            label: "Site Description",
+            type: "string",
+            description: "used for SEO description",
+          },
+          {
+            name: "navAlignment",
+            label: "Right align navigation",
+            description: "Left align when off, Right align when on",
+            type: "boolean",
+          },
           {
             name: "darkmode",
             label: "Show Dark/Light Mode Switcher",
