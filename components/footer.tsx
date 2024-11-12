@@ -80,12 +80,9 @@ function SocialIcon({ platform, size = 24 }: SocialIconProps) {
 export function Footer({ footer }: { footer: PageAndNavQuery["footer"] }) {
   const year = React.useMemo(() => new Date().getFullYear(), [])
   const social = footer.social ? objectEntriesFilter(footer.social) : null
-  let bgStyle = "bg-primary"
-  if (footer.backgroundColor === "secondary") {
-    bgStyle = "bg-secondary"
-  }
-  if (footer.backgroundColor === "muted") {
-    bgStyle = "bg-muted"
+  let bgStyle = ""
+  if (footer.backgroundColor) {
+    bgStyle = `bg-${footer.backgroundColor}`
   }
   return (
     <footer className={bgStyle}>
