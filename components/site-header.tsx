@@ -26,7 +26,7 @@ export function SiteHeader({
   return (
     <header className="bg-background sticky top-0 z-40 w-full border-b">
       <div className="container flex h-16 items-center">
-        <Link href="/">
+        <Link href="/" className="flex items-center gap-1">
           <div
             style={{ position: "relative", width: "50px", height: "50px" }}
             className="hover:bg-gray-100"
@@ -42,6 +42,14 @@ export function SiteHeader({
               }}
             />
           </div>
+          {header.logoTitle && (
+            <div
+              className="font-crimson"
+              data-tina-field={header.logo && tinaField(header, "logoTitle")}
+            >
+              {header.logoTitle}
+            </div>
+          )}
         </Link>
         <div
           className={`hidden grow ${

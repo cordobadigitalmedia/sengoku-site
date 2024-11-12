@@ -3,5 +3,6 @@
     "facebook": "profile.php?id=100093859285400",
     "github": ""
   },
-  "copyright": "Sengoku Martial Arts Center, 33 Rayborn Crescent, St. Albert"
+  "copyright": "Sengoku Martial Arts Center, 33 Rayborn Crescent, St. Albert",
+  "backgroundColor": "muted"
 }

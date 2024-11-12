@@ -35,14 +35,22 @@ export function WelcomeHero(props: PageBlocksWelcomeHero) {
             />
           </div>
         )}
-        <div className="z-5 relative max-w-3xl px-4 text-center text-white">
+        <div className="z-5 relative max-w-3xl px-4 text-center">
           <h1
-            className="mb-4 text-5xl font-bold"
+            className="text-primary mb-4 text-5xl font-bold"
             data-tina-field={tinaField(props, "title")}
           >
             {props.title}
           </h1>
-          <div className="prose" data-tina-field={tinaField(props, "message")}>
+          <div
+            className="prose prose-custom max-w-none text-xl"
+            style={
+              {
+                "--custom-prose-color": "hsl(var(--secondary))",
+              } as React.CSSProperties
+            }
+            data-tina-field={tinaField(props, "message")}
+          >
             <TinaMarkdown content={props.message} />
           </div>
           <div className="flex items-center justify-center gap-5 py-12">
@@ -55,7 +63,16 @@ export function WelcomeHero(props: PageBlocksWelcomeHero) {
                       key={link.label}
                       href={link.link || ""}
                     >
-                      <Button size="lg">{link.label}</Button>
+                      <Button
+                        size="lg"
+                        variant={
+                          link.buttonColor === "primary"
+                            ? `default`
+                            : `secondary`
+                        }
+                      >
+                        {link.label}
+                      </Button>
                     </Link>
                   )
                 }
