@@ -1,4 +1,17 @@
 import { defineConfig } from "tinacms"
+import { ToolbarOverrideType } from "tinacms/dist/toolkit/fields/plugins/mdx-field-plugin/plate/toolbar/toolbar-overrides"
+
+type toolbarItemName = Exclude<ToolbarOverrideType, "table">
+
+const richTextToolbar: toolbarItemName[] = [
+  "heading",
+  "bold",
+  "italic",
+  "embed",
+  "image",
+  "ol",
+  "ul",
+]
 
 export default defineConfig({
   branch: process.env.VERCEL_GIT_COMMIT_REF || "add-blocks",
@@ -51,6 +64,13 @@ export default defineConfig({
                     type: "rich-text",
                     label: "Content",
                     description: "Rich content for page",
+                    toolbarOverride: richTextToolbar,
+                  },
+                  {
+                    type: "string",
+                    name: "backgroundColor",
+                    label: "Background color type",
+                    options: ["primary", "secondary", "muted"],
                   },
                 ],
               },
@@ -67,6 +87,7 @@ export default defineConfig({
                     name: "message",
                     type: "rich-text",
                     label: "Hero Message",
+                    toolbarOverride: richTextToolbar,
                   },
                   {
                     name: "links",
@@ -95,6 +116,12 @@ export default defineConfig({
                         name: "style",
                         label: "Link type",
                         options: ["simple", "button"],
+                      },
+                      {
+                        type: "string",
+                        name: "buttonColor",
+                        label: "Button color type",
+                        options: ["primary", "secondary"],
                       },
                     ],
                   },
@@ -136,6 +163,7 @@ export default defineConfig({
                     name: "content",
                     label: "Cover Content",
                     type: "rich-text",
+                    toolbarOverride: richTextToolbar,
                   },
                   {
                     name: "backgroundImage",
@@ -143,12 +171,10 @@ export default defineConfig({
                     type: "image",
                   },
                   {
-                    name: "backgroundColor",
-                    label: "Background Color",
                     type: "string",
-                    ui: {
-                      component: "color",
-                    },
+                    name: "backgroundColor",
+                    label: "Background color type",
+                    options: ["primary", "secondary", "muted"],
                   },
                 ],
               },
@@ -216,6 +242,7 @@ export default defineConfig({
                         name: "content",
                         label: "Content",
                         type: "rich-text",
+                        toolbarOverride: richTextToolbar,
                       },
                       {
                         name: "links",
@@ -248,6 +275,12 @@ export default defineConfig({
                             ],
                           },
                         ],
+                      },
+                      {
+                        type: "string",
+                        name: "backgroundColor",
+                        label: "Background color type",
+                        options: ["primary", "secondary", "muted"],
                       },
                     ],
                   },
@@ -297,6 +330,7 @@ export default defineConfig({
             label: "Body",
             type: "rich-text",
             isBody: true,
+            toolbarOverride: richTextToolbar,
           },
         ],
       },
@@ -382,7 +416,30 @@ export default defineConfig({
             label: "Logo",
             type: "image",
           },
-          { name: "siteTitle", label: "Site Title", type: "string" },
+          {
+            name: "logoTitle",
+            label: "Logo Title",
+            description: "Show a title next to the logo",
+            type: "string",
+          },
+          {
+            name: "siteTitle",
+            label: "Site Title",
+            type: "string",
+            description: "used for SEO title",
+          },
+          {
+            name: "siteDescription",
+            label: "Site Description",
+            type: "string",
+            description: "used for SEO description",
+          },
+          {
+            name: "navAlignment",
+            label: "Right align navigation",
+            description: "Left align when off, Right align when on",
+            type: "boolean",
+          },
           {
             name: "darkmode",
             label: "Show Dark/Light Mode Switcher",
@@ -449,6 +506,12 @@ export default defineConfig({
             name: "copyright",
             label: "Copyright notice",
             type: "string",
+          },
+          {
+            type: "string",
+            name: "backgroundColor",
+            label: "Background color type",
+            options: ["primary", "secondary", "muted"],
           },
         ],
       },

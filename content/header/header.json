@@ -1,5 +1,8 @@
 {
   "logo": "/images/logo-sengoku.png",
+  "logoTitle": "Sengoku Martial Arts",
   "siteTitle": "Sengoku Martial Arts Center in St. Albert | Building Character and Confidence",
-  "darkmode": true
+  "siteDescription": "Our St. Albert martial arts center offers a family-friendly environment for kids and adults to learn traditional styles, build confidence, and develop important life skills like discipline and perseverance.",
+  "navAlignment": false,
+  "darkmode": false
 }
