@@ -330,7 +330,7 @@ export default defineConfig({
             label: "Body",
             type: "rich-text",
             isBody: true,
-            toolbarOverride: [""],
+            toolbarOverride: richTextToolbar,
           },
         ],
       },
