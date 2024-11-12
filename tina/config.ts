@@ -13,6 +13,8 @@ const richTextToolbar: toolbarItemName[] = [
   "ul",
 ]
 
+const backgroundColorOptions = ["none", "primary", "secondary", "muted"]
+
 export default defineConfig({
   branch: process.env.VERCEL_GIT_COMMIT_REF || "add-blocks",
   clientId: process.env.TINA_CLIENT_ID || "",
@@ -70,7 +72,7 @@ export default defineConfig({
                     type: "string",
                     name: "backgroundColor",
                     label: "Background color type",
-                    options: ["primary", "secondary", "muted"],
+                    options: backgroundColorOptions,
                   },
                 ],
               },
@@ -174,7 +176,7 @@ export default defineConfig({
                     type: "string",
                     name: "backgroundColor",
                     label: "Background color type",
-                    options: ["primary", "secondary", "muted"],
+                    options: backgroundColorOptions,
                   },
                 ],
               },
@@ -280,7 +282,7 @@ export default defineConfig({
                         type: "string",
                         name: "backgroundColor",
                         label: "Background color type",
-                        options: ["primary", "secondary", "muted"],
+                        options: backgroundColorOptions,
                       },
                     ],
                   },
@@ -511,7 +513,7 @@ export default defineConfig({
             type: "string",
             name: "backgroundColor",
             label: "Background color type",
-            options: ["primary", "secondary", "muted"],
+            options: backgroundColorOptions,
           },
         ],
       },
