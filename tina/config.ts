@@ -1,6 +1,8 @@
 import { defineConfig } from "tinacms"
 import { ToolbarOverrideType } from "tinacms/dist/toolkit/fields/plugins/mdx-field-plugin/plate/toolbar/toolbar-overrides"
 
+import { RichTextTemplates } from "./rich-text-templates"
+
 type toolbarItemName = Exclude<ToolbarOverrideType, "table">
 
 const richTextToolbar: toolbarItemName[] = [
@@ -67,12 +69,20 @@ export default defineConfig({
                     label: "Content",
                     description: "Rich content for page",
                     toolbarOverride: richTextToolbar,
+                    isBody: true,
+                    templates: RichTextTemplates,
                   },
                   {
                     type: "string",
                     name: "backgroundColor",
                     label: "Background color type",
                     options: backgroundColorOptions,
+                  },
+                  {
+                    type: "string",
+                    name: "textAlign",
+                    label: "Text Alignment",
+                    options: ["left", "center", "right"],
                   },
                 ],
               },

@@ -26,6 +26,8 @@ blocks:
       * Kyujutsu: Archery
 
 
+
+
       ## Class Schedule
 
 

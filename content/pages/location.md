@@ -5,10 +5,9 @@ blocks:
     content: ''
     backgroundImage: /images/entrance.jpeg
     _template: coverSection
-  - content: |
-      ## Location
+  - content: |+
+      ## 33 Rayborn Crescent, St. Albert
 
-      ### 33 Rayborn Crescent, St. Albert
     _template: pageContent
 ---
 

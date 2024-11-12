@@ -42,15 +42,13 @@ blocks:
             style: button
     gridTitle: Arts Taught
     _template: cardgrid
-  - content: >
+  - content: |+
       # Location
-
 
       ### 33 Rayborn Crescent, St. Albert
 
-
-      [https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2366.4980321529033!2d-113.6455544!3d53.6202566!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a027dd6aa4a42f%3A0xdbaa6c788849128a!2sSengoku%20Martial%20Arts%20Center!5e0!3m2!1sen!2sca!4v1716435524082!5m2!1sen!2sca](https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2366.4980321529033!2d-113.6455544!3d53.6202566!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a027dd6aa4a42f%3A0xdbaa6c788849128a!2sSengoku%20Martial%20Arts%20Center!5e0!3m2!1sen!2sca!4v1716435524082!5m2!1sen!2sca)
     backgroundColor: secondary
+    textAlign: center
     _template: pageContent
 ---
 
