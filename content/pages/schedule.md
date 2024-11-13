@@ -3,7 +3,11 @@ title: Schedule
 blocks:
   - headline: Kudoshin Sogo Ryu Bujutsu
     content: ''
+    backgroundType: video
     backgroundImage: /images/1.jpg
+    backgroundVideo: >-
+      https://qacsnzau6thrnrtb.public.blob.vercel-storage.com/combat-8LQbKX1IJyYIlf1sRGq8UC8rxF9KWc.mp4
+    backgroundColor: primary
     _template: coverSection
   - content: >
       ## Kudoshin Sogo Ryu Bujutsu
@@ -24,8 +28,6 @@ blocks:
       * Bojutsu/Jojutsu: Using the staff
 
       * Kyujutsu: Archery
-
-
 
 
       ## Class Schedule

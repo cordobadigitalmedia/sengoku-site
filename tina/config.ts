@@ -178,9 +178,26 @@ export default defineConfig({
                     toolbarOverride: richTextToolbar,
                   },
                   {
+                    type: "string",
+                    name: "backgroundType",
+                    label: "Background Type",
+                    description: "Only the type specified will be used",
+                    options: [
+                      { label: "Image", value: "image" },
+                      { label: "Video", value: "video" },
+                    ],
+                  },
+                  {
                     name: "backgroundImage",
                     label: "Cover Background Image",
                     type: "image",
+                  },
+                  {
+                    name: "backgroundVideo",
+                    type: "string",
+                    label: "Background Video Absolute URL",
+                    description:
+                      "Needs to point to a *.public.blob.vercel-storage.com link",
                   },
                   {
                     type: "string",

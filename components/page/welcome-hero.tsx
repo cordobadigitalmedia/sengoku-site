@@ -16,7 +16,7 @@ export function WelcomeHero(props: PageBlocksWelcomeHero) {
     <>
       <section
         className="relative flex h-[80vh] w-full items-center justify-center"
-        style={{ backgroundColor }}
+        style={{ backgroundColor: backgroundColor }}
         data-tina-field={tinaField(props, "backgroundColor")}
       >
         {backgroundImage !== "none" && (
