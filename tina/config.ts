@@ -18,7 +18,7 @@ const richTextToolbar: toolbarItemName[] = [
 const backgroundColorOptions = ["none", "primary", "secondary", "muted"]
 
 export default defineConfig({
-  branch: process.env.VERCEL_GIT_COMMIT_REF || "add-blocks",
+  branch: process.env.VERCEL_GIT_COMMIT_REF,
   clientId: process.env.TINA_CLIENT_ID || "",
   token: process.env.TINA_TOKEN || "",
   build: {
@@ -38,7 +38,7 @@ export default defineConfig({
         name: "page",
         label: "Pages",
         path: "content/pages",
-        format: "md",
+        format: "mdx",
         ui: {
           router: (props) => {
             return "/"
@@ -68,8 +68,8 @@ export default defineConfig({
                     type: "rich-text",
                     label: "Content",
                     description: "Rich content for page",
-                    toolbarOverride: richTextToolbar,
                     isBody: true,
+                    toolbarOverride: richTextToolbar,
                     templates: RichTextTemplates,
                   },
                   {

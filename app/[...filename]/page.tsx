@@ -10,7 +10,7 @@ export default async function Page({
   params: Promise<{ filename: string[] }>
 }) {
   const result = await client.queries.pageAndNav({
-    relativePath: `${(await params).filename}.md`,
+    relativePath: `${(await params).filename}.mdx`,
   })
   return <PageComponent {...result} />
 }

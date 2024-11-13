@@ -1,23 +1,19 @@
 ---
 links:
   - label: Schedule
-    linkedPage: content/pages/schedule.md
+    linkedPage: content/pages/schedule.mdx
     linkType: page
   - label: Arts
-    linkedPage: content/pages/arts.md
+    linkedPage: content/pages/arts.mdx
     linkType: page
   - label: Special Classes
-    linkedPage: content/pages/special-classes.md
-    linkType: page
-  - label: Gallery
-    linkedPage: content/pages/gallery.md
+    linkedPage: content/pages/special-classes.mdx
     linkType: page
   - label: Location
-    linkedPage: content/pages/location.md
+    linkedPage: content/pages/location.mdx
     linkType: page
   - label: Contact
-    link: /contact
-    linkedPage: content/pages/contact.md
+    linkedPage: content/pages/contact.mdx
     linkType: page
 ---
 

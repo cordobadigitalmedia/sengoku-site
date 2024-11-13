@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Page() {
   const result = await client.queries.pageAndNav({
-    relativePath: `home.md`,
+    relativePath: `home.mdx`,
   })
   return (
     <Suspense>
