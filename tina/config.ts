@@ -41,7 +41,7 @@ export default defineConfig({
         format: "mdx",
         ui: {
           router: (props) => {
-            return "/"
+            return `/${props.document._sys.filename}`
           },
         },
         fields: [
@@ -320,6 +320,45 @@ export default defineConfig({
                   },
                 ],
               },
+              {
+                name: "gallery",
+                label: "Image Gallery",
+                ui: {
+                  itemProps: (item) => {
+                    return { label: item.galleryTitle }
+                  },
+                },
+                fields: [
+                  {
+                    name: "galleryImages",
+                    label: "Gallery Images",
+                    type: "object",
+                    list: true,
+                    ui: {
+                      itemProps: (item) => {
+                        return { label: item.caption }
+                      },
+                    },
+                    fields: [
+                      {
+                        name: "caption",
+                        label: "Caption",
+                        type: "string",
+                      },
+                      {
+                        name: "galleryImage",
+                        label: "Gallery Image",
+                        type: "image",
+                      },
+                    ],
+                  },
+                  {
+                    name: "galleryTitle",
+                    label: "Image Gallery Title",
+                    type: "string",
+                  },
+                ],
+              },
             ],
           },
         ],
@@ -329,6 +368,11 @@ export default defineConfig({
         label: "Posts",
         path: "content/posts",
         format: "md",
+        ui: {
+          router: (props) => {
+            return `/blog/${props.document._sys.filename}`
+          },
+        },
         fields: [
           {
             name: "title",
