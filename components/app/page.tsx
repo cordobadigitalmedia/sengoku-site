@@ -6,6 +6,7 @@ import {
 } from "@/tina/__generated__/types"
 import { useTina } from "tinacms/dist/react"
 
+import { ImageGallery } from "@/components//page/image-gallery"
 import { Footer } from "@/components/footer"
 import { CardGrid } from "@/components/page/card-grid"
 import { CoverSection } from "@/components/page/cover-section"
@@ -34,6 +35,9 @@ export function PageComponent(props: {
               }
               case "PageBlocksCardgrid": {
                 return <CardGrid key={i} {...block} />
+              }
+              case "PageBlocksGallery": {
+                return <ImageGallery key={i} {...block} />
               }
               case "PageBlocksCoverSection": {
                 return <CoverSection key={i} {...block} />
