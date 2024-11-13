@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { PageBlocksGallery } from "@/tina/__generated__/types"
+import { tinaField } from "tinacms/dist/react"
 
 export function ImageGallery(props: PageBlocksGallery): JSX.Element {
   const { galleryImages } = props
@@ -18,6 +19,7 @@ export function ImageGallery(props: PageBlocksGallery): JSX.Element {
                     <div className="relative h-80">
                       <Image
                         src={galleryImage}
+                        data-tina-field={tinaField(item, "galleryImage")}
                         fill
                         alt={item?.caption || "Gallery Image"}
                         className="object-contain"
