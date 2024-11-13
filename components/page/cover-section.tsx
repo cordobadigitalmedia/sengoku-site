@@ -1,6 +1,5 @@
 import Image from "next/image"
 import { PageBlocksCoverSection } from "@/tina/__generated__/types"
-import BackgroundVideo from "next-video/background-video"
 import { tinaField } from "tinacms/dist/react"
 import { TinaMarkdown } from "tinacms/dist/rich-text"
 
@@ -57,11 +56,11 @@ export function CoverSection(props: PageBlocksCoverSection) {
           style={{ backgroundColor }}
           data-tina-field={tinaField(props, "backgroundColor")}
         >
-          <BackgroundVideo src={props.backgroundVideo}>
+          <video src={props.backgroundVideo}>
             <h1 className="px-4 text-center text-4xl font-bold text-white drop-shadow-md sm:text-5xl md:text-6xl">
               {props.headline || ""}
             </h1>
-          </BackgroundVideo>
+          </video>
         </section>
       )}
     </>
