@@ -9,6 +9,9 @@ links:
   - label: Special Classes
     linkedPage: content/pages/special-classes.mdx
     linkType: page
+  - label: Gallery
+    linkedPage: content/pages/gallery.mdx
+    linkType: page
   - label: Location
     linkedPage: content/pages/location.mdx
     linkType: page
