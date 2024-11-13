@@ -3,6 +3,8 @@ import { PageBlocksCoverSection } from "@/tina/__generated__/types"
 import { tinaField } from "tinacms/dist/react"
 import { TinaMarkdown } from "tinacms/dist/rich-text"
 
+import BackgroundVideo from "../ui/background-video"
+
 export function CoverSection(props: PageBlocksCoverSection) {
   const backgroundImage = props.backgroundImage
     ? `${props.backgroundImage}`
@@ -51,16 +53,18 @@ export function CoverSection(props: PageBlocksCoverSection) {
         </section>
       )}
       {backgroundType === "video" && props.backgroundVideo && (
-        <section
-          className={`relative w-full overflow-hidden`}
-          style={{ backgroundColor }}
-          data-tina-field={tinaField(props, "backgroundColor")}
-        >
-          <video src={props.backgroundVideo}>
-            <h1 className="px-4 text-center text-4xl font-bold text-white drop-shadow-md sm:text-5xl md:text-6xl">
+        <section className={`relative w-full overflow-hidden`}>
+          <BackgroundVideo
+            src={props.backgroundVideo}
+            data-tina-field={tinaField(props, "backgroundVideo")}
+          >
+            <h1
+              className="px-4 text-center text-4xl font-bold text-white drop-shadow-md sm:text-5xl md:text-6xl"
+              data-tina-field={tinaField(props, "headline")}
+            >
               {props.headline || ""}
             </h1>
-          </video>
+          </BackgroundVideo>
         </section>
       )}
     </>
