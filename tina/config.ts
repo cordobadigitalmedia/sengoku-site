@@ -1,6 +1,8 @@
 import { defineConfig } from "tinacms"
 import { ToolbarOverrideType } from "tinacms/dist/toolkit/fields/plugins/mdx-field-plugin/plate/toolbar/toolbar-overrides"
 
+import { RichTextTemplates } from "./rich-text-templates"
+
 type toolbarItemName = Exclude<ToolbarOverrideType, "table">
 
 const richTextToolbar: toolbarItemName[] = [
@@ -67,12 +69,20 @@ export default defineConfig({
                     label: "Content",
                     description: "Rich content for page",
                     toolbarOverride: richTextToolbar,
+                    isBody: true,
+                    templates: RichTextTemplates,
                   },
                   {
                     type: "string",
                     name: "backgroundColor",
                     label: "Background color type",
                     options: backgroundColorOptions,
+                  },
+                  {
+                    type: "string",
+                    name: "textAlign",
+                    label: "Text Alignment",
+                    options: ["left", "center", "right"],
                   },
                 ],
               },
@@ -168,9 +178,26 @@ export default defineConfig({
                     toolbarOverride: richTextToolbar,
                   },
                   {
+                    type: "string",
+                    name: "backgroundType",
+                    label: "Background Type",
+                    description: "Only the type specified will be used",
+                    options: [
+                      { label: "Image", value: "image" },
+                      { label: "Video", value: "video" },
+                    ],
+                  },
+                  {
                     name: "backgroundImage",
                     label: "Cover Background Image",
                     type: "image",
+                  },
+                  {
+                    name: "backgroundVideo",
+                    type: "string",
+                    label: "Background Video Absolute URL",
+                    description:
+                      "Needs to point to a *.public.blob.vercel-storage.com link",
                   },
                   {
                     type: "string",
