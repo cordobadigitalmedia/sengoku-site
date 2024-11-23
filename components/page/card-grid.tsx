@@ -6,6 +6,8 @@ import { TinaMarkdown } from "tinacms/dist/rich-text"
 
 import { Button } from "@/components/ui/button"
 
+type ObjectFitValue = "fill" | "contain" | "cover" | "none" | "scale-down"
+
 export function CardGrid(props: PageBlocksCardgrid): JSX.Element {
   const { cardblock } = props
   return (
@@ -30,7 +32,9 @@ export function CardGrid(props: PageBlocksCardgrid): JSX.Element {
                     data-tina-field={tinaField(item, "coverimage")}
                     style={{
                       aspectRatio: "400/300",
-                      objectFit: "cover",
+                      objectFit: item.imageFit
+                        ? (item.imageFit as ObjectFitValue)
+                        : "contain",
                     }}
                     width={400}
                   />
