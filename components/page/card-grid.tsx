@@ -32,7 +32,7 @@ export function CardGrid(props: PageBlocksCardgrid): JSX.Element {
                     data-tina-field={tinaField(item, "coverimage")}
                     style={{
                       aspectRatio: "400/300",
-                      objectFit: item.imageFit
+                      objectFit: item?.imageFit
                         ? (item.imageFit as ObjectFitValue)
                         : "contain",
                     }}
