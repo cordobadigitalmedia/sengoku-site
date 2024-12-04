@@ -535,6 +535,26 @@ export default defineConfig({
               "Placed on the top right. Uses Kinde.com to manage the user authentication system",
             type: "boolean",
           },
+          {
+            name: "bannerText",
+            label: "Banner content",
+            type: "rich-text",
+          },
+          {
+            name: "bannerCTAText",
+            label: "banner Call to Action Text",
+            type: "string",
+          },
+          {
+            name: "bannerCTALink",
+            label: "banner Call to Action Link relative or absolute",
+            type: "string",
+          },
+          {
+            name: "bannerShow",
+            label: "Show banner",
+            type: "boolean",
+          },
         ],
       },
       {
