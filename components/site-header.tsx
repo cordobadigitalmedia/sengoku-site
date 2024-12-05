@@ -16,6 +16,8 @@ import {
 } from "@/components/ui/dialog"
 import { ThemeToggle } from "@/components/theme-toggle"
 
+import { Banner } from "./ui/banner"
+
 export function SiteHeader({
   nav,
   header,
@@ -25,6 +27,18 @@ export function SiteHeader({
 }) {
   return (
     <header className="bg-background sticky top-0 z-40 w-full border-b">
+      {header.bannerShow ? (
+        <div data-tina-field={tinaField(header, "bannerText")}>
+          <Banner
+            button={{
+              text: header.bannerCTAText as string,
+              link: header.bannerCTALink as string,
+            }}
+          >
+            {header.bannerText}
+          </Banner>
+        </div>
+      ) : null}
       <div className="container flex h-16 items-center">
         <Link href="/" className="flex items-center gap-1">
           <div

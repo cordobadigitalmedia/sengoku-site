@@ -12,12 +12,6 @@ import { tinaField } from "tinacms/dist/react"
 
 import { buttonVariants } from "@/components/ui/button"
 
-/**
-const social = [
-  { handle: "llama-link", platform: "twitter" },
-  { handle: "llama-link", platform: "github" },
-]
-   */
 function objectEntriesFilter(
   obj: { [s: string]: unknown } | ArrayLike<unknown>
 ) {
@@ -87,7 +81,7 @@ export function Footer({ footer }: { footer: PageAndNavQuery["footer"] }) {
   return (
     <footer className={bgStyle}>
       <div className="mx-auto max-w-7xl px-2 py-4 md:flex md:items-center md:justify-between lg:px-4">
-        <div className="mt-8 md:mt-0">
+        <div className="mb-2 mt-4 text-center md:my-0 md:text-left">
           <p
             className="text-secondary text-sm leading-5"
             data-tina-field={tinaField(footer, "copyright")}
