@@ -17,7 +17,7 @@ Looking to deepen your martial arts practice or experience the transformative po
 
 ## Event Details
 
-### Dates: 
+### Dates:
 
 * Saturday, January 18, 2025, and Sunday, January 19, 2025
 
@@ -26,7 +26,7 @@ Looking to deepen your martial arts practice or experience the transformative po
 * Saturday: 12:00 PM - 7:00 PM (includes a 1-hour break)
 * Sunday: 12:00 PM - 3:00 PM
 
-### Location: 
+### Location:
 
 * Sengoku Martial Arts Center, Edmonton, AB
 
@@ -43,7 +43,7 @@ Looking to deepen your martial arts practice or experience the transformative po
 
 ### Registration:
 
-* Call 780-667-2705 to reserve your spot.
+
 
 ### What You'll Learn
 
@@ -70,3 +70,4 @@ Located in Edmonton, Alberta, the Sengoku Martial Arts Center is dedicated to te
 ### Reserve Your Spot Today!
 
 Spaces are limited, so don’t miss out on this unique opportunity to explore the power of chi energy. Call 780-667-2705 now to secure your place at the seminar.
+

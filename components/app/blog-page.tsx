@@ -6,6 +6,7 @@ import { tinaField, useTina } from "tinacms/dist/react"
 import { TinaMarkdown } from "tinacms/dist/rich-text"
 
 import { Footer } from "@/components/footer"
+import { components } from "@/components/page/components"
 import { SiteHeader } from "@/components/site-header"
 
 export function BlogPageComponent(props: {
@@ -52,7 +53,7 @@ export function BlogPageComponent(props: {
             className="prose max-w-none"
             data-tina-field={tinaField(data.post, "body")}
           >
-            <TinaMarkdown content={data.post.body} />
+            <TinaMarkdown content={data.post.body} components={components} />
           </div>
         </section>
         <Footer footer={data.footer} />

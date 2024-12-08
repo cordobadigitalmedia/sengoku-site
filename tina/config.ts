@@ -413,6 +413,7 @@ export default defineConfig({
             type: "rich-text",
             isBody: true,
             toolbarOverride: richTextToolbar,
+            templates: RichTextTemplates,
           },
         ],
       },
