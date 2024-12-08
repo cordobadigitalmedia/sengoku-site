@@ -11,33 +11,37 @@ description: >-
   martial arts practice. Call 780-667-2705 to register!
 ---
 
-### Discover the Art of Chi with Sengoku Martial Arts Center
+## Discover the Art of Chi with Sengoku Martial Arts Center
 
 Looking to deepen your martial arts practice or experience the transformative power of chi energy? Join us at the Chi Development Seminar in Edmonton, Alberta, hosted by the Sengoku Martial Arts Center. This two-day seminar is designed to help participants harness and enhance their inner energy, whether they are seasoned martial artists or complete beginners.
 
-### Event Details
+## Event Details
 
-Dates: Saturday, January 18, 2025, and Sunday, January 19, 2025
+### Dates: 
 
-Time:
+* Saturday, January 18, 2025, and Sunday, January 19, 2025
+
+### Time:
 
 * Saturday: 12:00 PM - 7:00 PM (includes a 1-hour break)
 * Sunday: 12:00 PM - 3:00 PM
 
-Location: Sengoku Martial Arts Center, Edmonton, AB
+### Location: 
 
-Instructors:
+* Sengoku Martial Arts Center, Edmonton, AB
+
+### Instructors:
 
 * Sifu Neil Ripzky
 * Hanshi Martin Balog
 * Sensei Khalil Wright
 
-Cost:
+### Cost:
 
 * $100.00 for Saturday
 * $50.00 for Sunday
 
-Registration: 
+### Registration:
 
 * Call 780-667-2705 to reserve your spot.
 
@@ -66,5 +70,3 @@ Located in Edmonton, Alberta, the Sengoku Martial Arts Center is dedicated to te
 ### Reserve Your Spot Today!
 
 Spaces are limited, so don’t miss out on this unique opportunity to explore the power of chi energy. Call 780-667-2705 now to secure your place at the seminar.
-
-***
