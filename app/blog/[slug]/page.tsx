@@ -8,7 +8,7 @@ export default async function BlogPage({
   params: Promise<{ slug: string }>
 }) {
   const result = await client.queries.postAndNav({
-    relativePath: `${(await params).slug}.md`,
+    relativePath: `${(await params).slug}.mdx`,
   })
   return <BlogPageComponent {...result} />
 }
