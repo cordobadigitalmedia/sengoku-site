@@ -5,7 +5,6 @@ import { tinaField } from "tinacms/dist/react"
 
 export function BlogList(props: PostConnectionQuery) {
   const posts = props.postConnection.edges
-  console.log(posts)
   return (
     <>
       <div className="grid gap-8 lg:grid-cols-3">

@@ -115,7 +115,8 @@ export function SiteHeader({
                 let navLink = ""
                 let isExternal = false
                 if (link?.linkType === "page") {
-                  navLink = link.linkedPage?._sys.breadcrumbs.join("/") || ""
+                  navLink =
+                    "/" + link.linkedPage?._sys.breadcrumbs.join("/") || ""
                 }
                 if (link?.linkType === "relative") {
                   navLink = link.link || ""
