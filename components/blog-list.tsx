@@ -18,6 +18,7 @@ export function BlogList(props: PostConnectionQuery) {
             return (
               <Link
                 key={post._sys.breadcrumbs.join("/")}
+                data-tina-field={tinaField(post, "id")}
                 href={`/blog/${post._sys.breadcrumbs.join("/")}`}
                 className={`bg-card grid grid-cols-1 overflow-hidden rounded-lg shadow-md`}
               >
