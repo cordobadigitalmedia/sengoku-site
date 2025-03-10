@@ -5,8 +5,8 @@
   "siteDescription": "Our St. Albert martial arts center offers a family-friendly environment for kids and adults to learn traditional styles, build confidence, and develop important life skills like discipline and perseverance.",
   "navAlignment": true,
   "darkmode": false,
-  "bannerText": "**Chi Development Seminar**: Jan 18-19, 2025\n",
+  "bannerText": "",
   "bannerCTAText": "Learn more",
-  "bannerCTALink": "/special-classes",
-  "bannerShow": true
+  "bannerCTALink": "",
+  "bannerShow": false
 }
