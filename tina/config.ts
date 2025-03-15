@@ -69,7 +69,6 @@ export default defineConfig({
                     label: "Content",
                     description: "Rich content for page",
                     isBody: true,
-                    toolbarOverride: richTextToolbar,
                     templates: RichTextTemplates,
                   },
                   {

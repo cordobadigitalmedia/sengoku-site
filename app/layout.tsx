@@ -1,4 +1,5 @@
 import { Crimson_Text, Manrope, Noto_Serif } from "next/font/google"
+import { Analytics } from "@vercel/analytics/next"
 
 import "@/styles/globals.css"
 import "@/styles/styles.css"
@@ -51,6 +52,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           >
             {children}
           </ThemeProvider>
+          <Analytics />
         </body>
       </html>
     </>
