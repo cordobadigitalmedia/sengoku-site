@@ -15,10 +15,6 @@ links:
   - label: Location
     linkedPage: content/pages/location.mdx
     linkType: page
-  - label: Blog
-    link: /blog
-    linkedPage: ''
-    linkType: relative
   - label: Contact
     linkedPage: content/pages/contact.mdx
     linkType: page
