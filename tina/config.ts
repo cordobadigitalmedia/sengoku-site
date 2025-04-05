@@ -18,7 +18,7 @@ const richTextToolbar: toolbarItemName[] = [
 const backgroundColorOptions = ["none", "primary", "secondary", "muted"]
 
 export default defineConfig({
-  branch: process.env.VERCEL_GIT_COMMIT_REF,
+  branch: process.env.VERCEL_GIT_COMMIT_REF || "main",
   clientId: process.env.TINA_CLIENT_ID || "",
   token: process.env.TINA_TOKEN || "",
   build: {
@@ -50,6 +50,15 @@ export default defineConfig({
             label: "Page title",
             description: "For SEO purposes",
             type: "string",
+          },
+          {
+            name: "seo",
+            label: "SEO meta",
+            type: "object",
+            fields: [
+              { name: "description", type: "string" },
+              { name: "keywords", type: "string" },
+            ],
           },
           {
             name: "blocks",

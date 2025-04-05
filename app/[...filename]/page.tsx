@@ -15,18 +15,33 @@ export default async function Page({
   return <PageComponent {...result} />
 }
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ filename: string[] }>
+}): Promise<Metadata> {
+  const slug = (await params).filename
+  const result = await client.queries.pageAndNav({
+    relativePath: `${slug}.mdx`,
+  })
   const headerQuery = await client.queries.headerConnection()
   const headerData = headerQuery.data.headerConnection.edges
     ? headerQuery.data.headerConnection.edges[0]?.node
     : undefined
-  const title = headerData?.siteTitle || ""
-  const description = headerData?.siteDescription || ""
+  const title = result.data.page.title
+  const description = result.data.page.seo?.description
   return {
     title: title,
     description: description,
     openGraph: {
-      title: title,
+      title: title as string,
+      siteName: headerData?.siteTitle as string,
+      description: description as string,
+      url: `https://sengoku.ca/${slug}`,
+    },
+    twitter: {
+      title: title as string,
+      description: description as string,
     },
   }
 }
