@@ -15,6 +15,8 @@ import { PageContent } from "@/components/page/page-content"
 import { WelcomeHero } from "@/components/page/welcome-hero"
 import { SiteHeader } from "@/components/site-header"
 
+import { ArticleJsonLd, BusinessJsonLd } from "../json-ld"
+
 export function PageComponent(props: {
   data: PageAndNavQuery
   variables: {
@@ -58,6 +60,17 @@ export function PageComponent(props: {
         </div>
         <Footer footer={data.footer} />
       </div>
+      <ArticleJsonLd
+        title={data.page.title as string}
+        description={data.page.seo?.description as string}
+        imageUrl={`https://sengoku.ca/images/logo.png`}
+        articleSection="Martial Arts"
+        keywords={data.page.seo?.keywords as string}
+        url={`https://sengoku.ca/${data.page._sys.filename}`}
+      />
+      {(data.page._sys.filename === "location" ||
+        data.page._sys.filename === "home" ||
+        data.page._sys.filename === "contact") && <BusinessJsonLd />}
     </>
   )
 }
