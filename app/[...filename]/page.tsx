@@ -1,5 +1,6 @@
 import React from "react"
 import type { Metadata } from "next"
+import { notFound } from "next/navigation"
 import client from "@/tina/__generated__/client"
 
 import { PageComponent } from "@/components/app/page"
@@ -9,10 +10,14 @@ export default async function Page({
 }: {
   params: Promise<{ filename: string[] }>
 }) {
-  const result = await client.queries.pageAndNav({
-    relativePath: `${(await params).filename}.mdx`,
-  })
-  return <PageComponent {...result} />
+  try {
+    const result = await client.queries.pageAndNav({
+      relativePath: `${(await params).filename}.mdx`,
+    })
+    return <PageComponent {...result} />
+  } catch {
+    notFound()
+  }
 }
 
 export async function generateMetadata({
