@@ -1,76 +1,41 @@
-"use client"
-
-import {
-  PageAndNavQuery,
-  PageBlocksFeaturedPostsPosts,
-} from "@/tina/__generated__/types"
-import { useTina } from "tinacms/dist/react"
-
-import { ImageGallery } from "@/components//page/image-gallery"
 import { Footer } from "@/components/footer"
-import { CardGrid } from "@/components/page/card-grid"
-import { CoverSection } from "@/components/page/cover-section"
-import { FeaturedPosts } from "@/components/page/featured-posts"
-import { PageContent } from "@/components/page/page-content"
-import { WelcomeHero } from "@/components/page/welcome-hero"
+import { renderPageBlock } from "@/components/render-page-blocks"
 import { SiteHeader } from "@/components/site-header"
+import type { Header, Nav, Page as PageType, Footer as FooterType } from "@/types/content"
 
 import { ArticleJsonLd, BusinessJsonLd } from "../json-ld"
 
-export function PageComponent(props: {
-  data: PageAndNavQuery
-  variables: {
-    relativePath: string
-  }
-  query: string
+export async function PageComponent(props: {
+  page: PageType
+  nav: Nav
+  header: Header
+  footer: FooterType
 }) {
-  const { data } = useTina(props)
+  const { page, nav, header, footer } = props
+  const filename = page._sys?.filename ?? page.slug
+  const blocks = await Promise.all(
+    (page.blocks ?? []).map((block, i) => renderPageBlock(block, i))
+  )
   return (
     <>
-      <SiteHeader nav={data.nav} header={data.header} />
+      <SiteHeader nav={nav} header={header} />
       <div className="flex min-h-[calc(100vh-65px)] flex-col">
         <div className="grow">
-          {data.page.blocks?.map((block, i) => {
-            switch (block?.__typename) {
-              case "PageBlocksWelcomeHero": {
-                return <WelcomeHero key={i} {...block} />
-              }
-              case "PageBlocksCardgrid": {
-                return <CardGrid key={i} {...block} />
-              }
-              case "PageBlocksGallery": {
-                return <ImageGallery key={i} {...block} />
-              }
-              case "PageBlocksCoverSection": {
-                return <CoverSection key={i} {...block} />
-              }
-              case "PageBlocksFeaturedPosts": {
-                return (
-                  <FeaturedPosts
-                    key={i}
-                    posts={block.Posts as PageBlocksFeaturedPostsPosts[]}
-                  />
-                )
-              }
-              case "PageBlocksPageContent": {
-                return <PageContent key={i} {...block} />
-              }
-            }
-          })}
+          {blocks}
         </div>
-        <Footer footer={data.footer} />
+        <Footer footer={footer} />
       </div>
       <ArticleJsonLd
-        title={data.page.title as string}
-        description={data.page.seo?.description as string}
-        imageUrl={`https://sengoku.ca/images/logo.png`}
+        title={page.title}
+        description={page.seo?.description ?? ""}
+        imageUrl="https://sengoku.ca/images/logo.png"
         articleSection="Martial Arts"
-        keywords={data.page.seo?.keywords as string}
-        url={`https://sengoku.ca/${data.page._sys.filename}`}
+        keywords={page.seo?.keywords ?? ""}
+        url={`https://sengoku.ca/${filename}`}
       />
-      {(data.page._sys.filename === "location" ||
-        data.page._sys.filename === "home" ||
-        data.page._sys.filename === "contact") && <BusinessJsonLd />}
+      {(filename === "location" || filename === "home" || filename === "contact") && (
+        <BusinessJsonLd />
+      )}
     </>
   )
 }

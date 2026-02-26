@@ -1,3 +1,5 @@
+import type { Metadata } from "next"
+import { ClerkProvider } from "@clerk/nextjs"
 import { Crimson_Text, Manrope, Noto_Serif } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 
@@ -22,17 +24,17 @@ const noto_serif = Noto_Serif({
   variable: "--font-noto-serif",
 })
 
-interface RootLayoutProps {
-  children: React.ReactNode
-}
-
-export const metadata = {
+export const metadata: Metadata = {
   metadataBase: new URL("https://sengoku.ca"),
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
   return (
-    <>
+    <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <head />
         <body
@@ -55,6 +57,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <Analytics />
         </body>
       </html>
-    </>
+    </ClerkProvider>
   )
 }

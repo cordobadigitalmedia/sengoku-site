@@ -1,6 +1,5 @@
 import React from "react"
 import Link from "next/link"
-import { PageAndNavQuery } from "@/tina/__generated__/types"
 import {
   FacebookIcon,
   GithubIcon,
@@ -8,9 +7,9 @@ import {
   TwitterIcon,
   YoutubeIcon,
 } from "lucide-react"
-import { tinaField } from "tinacms/dist/react"
 
 import { buttonVariants } from "@/components/ui/button"
+import type { Footer as FooterType } from "@/types/content"
 
 function objectEntriesFilter(
   obj: { [s: string]: unknown } | ArrayLike<unknown>
@@ -26,11 +25,7 @@ function objectEntriesFilter(
     .map(([key, value]) => ({ platform: key, handle: value }))
 }
 
-type PlatformLinks = {
-  [key: string]: string
-}
-
-const platformLinks = {
+const platformLinks: Record<string, string> = {
   github: "https://github.com",
   twitter: "https://twitter.com",
   facebook: "https://facebook.com",
@@ -41,7 +36,7 @@ const platformLinks = {
 type PlatformKey = keyof typeof platformLinks
 
 const getLink = (platform: PlatformKey): string => {
-  return platformLinks[platform]
+  return platformLinks[platform] ?? ""
 }
 
 type SocialIconProps = {
@@ -51,8 +46,8 @@ type SocialIconProps = {
 
 function SocialIcon({ platform, size = 24 }: SocialIconProps) {
   const iconProps = {
-    size: size,
-    className: "text-gray-600 hover:text-gray-800 transition-colors",
+    size,
+    className: "text-gray-700 hover:text-gray-900 transition-colors",
   }
 
   switch (platform.toLowerCase()) {
@@ -71,7 +66,7 @@ function SocialIcon({ platform, size = 24 }: SocialIconProps) {
   }
 }
 
-export function Footer({ footer }: { footer: PageAndNavQuery["footer"] }) {
+export function Footer({ footer }: { footer: FooterType }) {
   const year = React.useMemo(() => new Date().getFullYear(), [])
   const social = footer.social ? objectEntriesFilter(footer.social) : null
   let bgStyle = ""
@@ -82,15 +77,12 @@ export function Footer({ footer }: { footer: PageAndNavQuery["footer"] }) {
     <footer className={bgStyle}>
       <div className="mx-auto max-w-7xl px-2 py-4 md:flex md:items-center md:justify-between lg:px-4">
         <div className="mb-2 mt-4 text-center md:my-0 md:text-left">
-          <p
-            className="text-secondary text-sm leading-5"
-            data-tina-field={tinaField(footer, "copyright")}
-          >
+          <p className="text-sm leading-5 text-gray-800">
             &copy; {year} {footer.copyright}
           </p>
         </div>
         <div className="flex justify-center md:justify-start">
-          <nav className={`items-center space-x-1`}>
+          <nav className="items-center space-x-1">
             {social &&
               social.map((item) => {
                 const platformLink = getLink(item.platform as PlatformKey)
@@ -100,7 +92,6 @@ export function Footer({ footer }: { footer: PageAndNavQuery["footer"] }) {
                     key={platformLink}
                     target="_blank"
                     rel="noreferrer"
-                    data-tina-field={tinaField(footer, "social")}
                   >
                     <div
                       className={buttonVariants({

@@ -1,13 +1,12 @@
 import Image from "next/image"
 import Link from "next/link"
-import { PageBlocksWelcomeHero } from "@/tina/__generated__/types"
 import { ArrowRight } from "lucide-react"
-import { tinaField } from "tinacms/dist/react"
-import { TinaMarkdown } from "tinacms/dist/rich-text"
 
 import { Button } from "@/components/ui/button"
+import { MdxContent } from "@/components/mdx-content"
+import type { BlockWelcomeHero } from "@/types/content"
 
-export function WelcomeHero(props: PageBlocksWelcomeHero) {
+export async function WelcomeHero(props: BlockWelcomeHero) {
   const backgroundColor = props.backgroundColor || "#ffffff"
   const backgroundImage = props.backgroundImage
     ? `${props.backgroundImage}`
@@ -16,8 +15,7 @@ export function WelcomeHero(props: PageBlocksWelcomeHero) {
     <>
       <section
         className="relative flex h-[80vh] w-full items-center justify-center"
-        style={{ backgroundColor: backgroundColor }}
-        data-tina-field={tinaField(props, "backgroundColor")}
+        style={{ backgroundColor }}
       >
         {backgroundImage !== "none" && (
           <div className="absolute inset-0 overflow-hidden">
@@ -31,15 +29,11 @@ export function WelcomeHero(props: PageBlocksWelcomeHero) {
                 objectFit: "cover",
               }}
               width={1920}
-              data-tina-field={tinaField(props, "backgroundImage")}
             />
           </div>
         )}
         <div className="z-5 relative max-w-3xl px-4 text-center">
-          <h1
-            className="text-primary mb-4 text-5xl font-bold"
-            data-tina-field={tinaField(props, "title")}
-          >
+          <h1 className="text-primary mb-4 text-5xl font-bold">
             {props.title}
           </h1>
           <div
@@ -49,26 +43,21 @@ export function WelcomeHero(props: PageBlocksWelcomeHero) {
                 "--custom-prose-color": "hsl(var(--secondary))",
               } as React.CSSProperties
             }
-            data-tina-field={tinaField(props, "message")}
           >
-            <TinaMarkdown content={props.message} />
+            {props.message ? await MdxContent({ source: props.message }) : null}
           </div>
           <div className="flex items-center justify-center gap-5 py-12">
             {props.links?.map((link) => {
               switch (link?.style) {
                 case "button": {
                   return (
-                    <Link
-                      data-tina-field={tinaField(link, "label")}
-                      key={link.label}
-                      href={link.link || ""}
-                    >
+                    <Link key={link.label} href={link.link || ""}>
                       <Button
                         size="lg"
                         variant={
                           link.buttonColor === "primary"
-                            ? `default`
-                            : `secondary`
+                            ? "default"
+                            : "secondary"
                         }
                       >
                         {link.label}
@@ -78,12 +67,8 @@ export function WelcomeHero(props: PageBlocksWelcomeHero) {
                 }
                 case "simple": {
                   return (
-                    <Link
-                      data-tina-field={tinaField(link, "label")}
-                      key={link.label}
-                      href={link?.link || ""}
-                    >
-                      <Button size="lg" variant={"ghost"}>
+                    <Link key={link.label} href={link?.link || ""}>
+                      <Button size="lg" variant="ghost">
                         Learn More
                         <ArrowRight className="ml-2 size-4" />
                       </Button>

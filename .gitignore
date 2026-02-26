@@ -4,6 +4,7 @@
 node_modules
 .pnp
 .pnp.js
+.pnpm-store
 
 # testing
 coverage
@@ -16,6 +17,7 @@ build
 # misc
 .DS_Store
 *.pem
+docs
 
 # debug
 npm-debug.log*
@@ -35,3 +37,4 @@ yarn-error.log*
 .contentlayer
 .env
 .vercel
+.env*.local
