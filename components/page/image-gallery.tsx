@@ -6,7 +6,7 @@ import type { BlockGallery } from "@/types/content"
 export function ImageGallery(props: BlockGallery): ReactElement {
   const { galleryImages } = props
   const itemsWithImage = (galleryImages ?? []).filter(
-    (item) => item?.galleryImage && `${item.galleryImage}`.trim() !== ""
+    (item) => item?.galleryImage?.trim()
   )
   return (
     <>
