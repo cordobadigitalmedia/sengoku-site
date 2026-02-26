@@ -1,4 +1,6 @@
-export function VideoPlayer({ url }: { url: string }): JSX.Element {
+import type { ReactElement } from "react"
+
+export function VideoPlayer({ url }: { url: string }): ReactElement {
   return (
     <iframe
       src={url}

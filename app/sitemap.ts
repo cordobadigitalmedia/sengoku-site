@@ -1,14 +1,15 @@
 import type { MetadataRoute } from "next"
-import client from "@/tina/__generated__/client"
+
+import { getAllPageSlugs } from "@/lib/content/pages"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const pages = await client.queries.pageConnection()
-  const page_links = pages.data?.pageConnection.edges?.map((edge) => ({
-    url: `https://sengoku.ca/${edge?.node?._sys.breadcrumbs}`,
+  const pageSlugs = await getAllPageSlugs()
+  const pageLinks: MetadataRoute.Sitemap = pageSlugs.map((slug) => ({
+    url: `https://sengoku.ca/${slug}`,
     lastModified: new Date(),
     changeFrequency: "weekly",
-    priority: 0.9,
-  })) as MetadataRoute.Sitemap
+    priority: slug === "home" ? 1 : 0.9,
+  }))
   return [
     {
       url: "https://sengoku.ca",
@@ -16,6 +17,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly",
       priority: 1,
     },
-    ...page_links,
+    ...pageLinks.filter((p) => p.url !== "https://sengoku.ca/home"),
   ]
 }

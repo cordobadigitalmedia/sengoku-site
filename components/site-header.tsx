@@ -1,11 +1,8 @@
 "use client"
 
-import * as React from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { PageAndNavQuery } from "@/tina/__generated__/types"
 import { Menu } from "lucide-react"
-import { tinaField } from "tinacms/dist/react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -15,24 +12,24 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { ThemeToggle } from "@/components/theme-toggle"
-
 import { Banner } from "./ui/banner"
+import type { Header, Nav } from "@/types/content"
 
 export function SiteHeader({
   nav,
   header,
 }: {
-  nav: PageAndNavQuery["nav"]
-  header: PageAndNavQuery["header"]
+  nav: Nav
+  header: Header
 }) {
   return (
     <header className="bg-background sticky top-0 z-40 w-full border-b">
       {header.bannerShow ? (
-        <div data-tina-field={tinaField(header, "bannerText")}>
+        <div>
           <Banner
             button={{
-              text: header.bannerCTAText as string,
-              link: header.bannerCTALink as string,
+              text: header.bannerCTAText ?? "",
+              link: header.bannerCTALink ?? "",
             }}
           >
             {header.bannerText}
@@ -44,53 +41,32 @@ export function SiteHeader({
           <div
             style={{ position: "relative", width: "50px", height: "50px" }}
             className="hover:bg-gray-100"
-            data-tina-field={header.logo && tinaField(header, "logo")}
           >
-            <Image
-              src={header.logo || ""}
-              alt={header.siteTitle || ""}
-              sizes="50px"
-              fill
-              style={{
-                objectFit: "contain",
-              }}
-            />
+            {header.logo ? (
+              <Image
+                src={header.logo}
+                alt={header.siteTitle ?? ""}
+                sizes="50px"
+                fill
+                style={{ objectFit: "contain" }}
+              />
+            ) : null}
           </div>
           {header.logoTitle && (
-            <div
-              className="font-crimson"
-              data-tina-field={header.logo && tinaField(header, "logoTitle")}
-            >
-              {header.logoTitle}
-            </div>
+            <div className="font-crimson">{header.logoTitle}</div>
           )}
         </Link>
         <div
           className={`hidden grow ${
-            Boolean(header.navAlignment) && `justify-end`
+            header.navAlignment ? "justify-end" : ""
           } md:flex`}
         >
           <ul className="flex items-center gap-3 p-6">
             {nav.links?.map((link) => {
-              let navLink = ""
-              let isExternal = false
-              if (link?.linkType === "page") {
-                navLink =
-                  "/" + link.linkedPage?._sys.breadcrumbs.join("/") || ""
-              }
-              if (link?.linkType === "relative") {
-                navLink = link.link || ""
-              }
-              if (link?.linkType === "external") {
-                navLink = link.link || ""
-                isExternal = true
-              }
+              const navLink = link?.link ?? ""
+              const isExternal = link?.linkType === "external"
               return (
-                <li
-                  data-tina-field={link && tinaField(link, "label")}
-                  key={link?.link}
-                  className="row-span-3"
-                >
+                <li key={link?.link ?? link?.label} className="row-span-3">
                   <Link href={navLink} target={isExternal ? "_blank" : "_self"}>
                     <Button variant="ghost">{link?.label}</Button>
                   </Link>
@@ -112,25 +88,13 @@ export function SiteHeader({
             </DialogTrigger>
             <DialogContent className="flex flex-col justify-center py-12 sm:max-w-[425px]">
               {nav.links?.map((link) => {
-                let navLink = ""
-                let isExternal = false
-                if (link?.linkType === "page") {
-                  navLink =
-                    "/" + link.linkedPage?._sys.breadcrumbs.join("/") || ""
-                }
-                if (link?.linkType === "relative") {
-                  navLink = link.link || ""
-                }
-                if (link?.linkType === "external") {
-                  navLink = link.link || ""
-                  isExternal = true
-                }
+                const navLink = link?.link ?? ""
+                const isExternal = link?.linkType === "external"
                 return (
                   <Link
-                    key={link?.link}
+                    key={link?.link ?? link?.label}
                     href={navLink}
                     target={isExternal ? "_blank" : "_self"}
-                    data-tina-field={link && tinaField(link, "label")}
                   >
                     <Button variant="ghost" className="w-full text-lg">
                       {link?.label}
@@ -147,11 +111,11 @@ export function SiteHeader({
               )}
             </DialogContent>
           </Dialog>
-          {header.darkmode && (
+          {header.darkmode ? (
             <div className="hidden md:flex">
               <ThemeToggle />
             </div>
-          )}
+          ) : null}
         </div>
       </div>
     </header>

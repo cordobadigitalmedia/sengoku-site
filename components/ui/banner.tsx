@@ -1,16 +1,15 @@
 "use client"
 
 import { useState } from "react"
+import type { ReactNode } from "react"
 import { X } from "lucide-react"
-import { tinaField } from "tinacms/dist/react"
-import { TinaMarkdown } from "tinacms/dist/rich-text"
 
 export function Banner({
   button,
   children,
 }: {
   button: { text: string; link: string }
-  children: any
+  children: ReactNode
 }) {
   const [showBanner, setShowBanner] = useState<boolean>(true)
   return (
@@ -43,9 +42,7 @@ export function Banner({
           </div>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
             <p className="text-sm/6 text-gray-900">
-              <div className="prose max-w-none">
-                <TinaMarkdown content={children} />
-              </div>
+              <div className="prose max-w-none">{children}</div>
             </p>
             <a
               href={button.link}

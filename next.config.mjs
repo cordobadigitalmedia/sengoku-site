@@ -5,22 +5,10 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "assets.tina.io",
-      },
-      {
-        protocol: "https",
         hostname: "*.public.blob.vercel-storage.com",
         port: "",
       },
     ],
-  },
-  async rewrites() {
-    return [
-      {
-        source: "/admin",
-        destination: "/admin/index.html",
-      },
-    ]
   },
 }
 
