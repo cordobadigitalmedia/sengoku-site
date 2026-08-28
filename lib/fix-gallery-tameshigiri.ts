@@ -3,7 +3,7 @@ import { neon } from "@neondatabase/serverless"
 import type { GalleryItem } from "@/types/content"
 
 const TAMESHIGIRI_VIDEO =
-  "https://0nt7gisybdk4bmcr.public.blob.vercel-storage.com/dougtameshigiri-pNJLu9WwACymGUfcGy3X0RS4rNmMGz.mp4"
+  "https://0nt7gisybdk4bmcr.public.blob.vercel-storage.com/dougtameshigiri-iIMA6pa3Mdi79aWMTMw0KiHj7d6Oan.mp4"
 const TAMESHIGIRI_CAPTION = "Shodan performing tameshigiri"
 
 type PageBlock = Record<string, unknown> & { _template?: string }
@@ -28,7 +28,9 @@ function toTypedGalleryItem(item: GalleryItem): GalleryItem | null {
 
   if (treatAsVideo) {
     const galleryVideo =
-      videoFromFields || (caption === TAMESHIGIRI_CAPTION ? TAMESHIGIRI_VIDEO : "")
+      caption === TAMESHIGIRI_CAPTION
+        ? TAMESHIGIRI_VIDEO
+        : videoFromFields
     if (!galleryVideo) return null
     return {
       ...(caption ? { caption } : {}),
