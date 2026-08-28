@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache"
 import { updatePageBySlug } from "@/lib/content/pages"
 import type { PageBlock } from "@/types/content"
 
-async function requireAdmin() {
+export async function requireAdmin() {
   const user = await currentUser()
   if (!user) throw new Error("Unauthorized")
   const role = (user.publicMetadata as { role?: string } | undefined)?.role
