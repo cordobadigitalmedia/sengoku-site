@@ -87,7 +87,7 @@ export function blockSummary(block: PageBlock): string {
     case "cardgrid":
       return block.gridTitle || `${block.cardblock?.length ?? 0} cards`
     case "gallery":
-      return block.galleryTitle || `${block.galleryImages?.length ?? 0} images`
+      return block.galleryTitle || `${block.galleryImages?.length ?? 0} items`
     case "featuredPosts":
       return `${block.Posts?.length ?? 0} featured posts`
     default:

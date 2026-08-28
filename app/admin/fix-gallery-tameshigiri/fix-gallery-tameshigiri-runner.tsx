@@ -13,7 +13,7 @@ export function FixGalleryTameshigiriRunner() {
       .then((result) => {
         setStatus("done")
         setMessage(
-          `Done. Removed ${result.removedCoverSections} cover section(s). Video in gallery: ${result.videoPresentInGallery ? "yes" : "no"}.`
+          `Done. Gallery blocks: ${result.galleryBlockCount}. Removed ${result.removedCoverSections} cover section(s). Video in gallery: ${result.videoPresentInGallery ? "yes" : "no"}.`
         )
       })
       .catch((error: Error) => {

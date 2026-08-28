@@ -5,9 +5,11 @@ import { ChevronDown, ChevronUp, GripVertical, Trash2 } from "lucide-react"
 import { ImageUploadField } from "@/components/admin/image-upload-field"
 import { VideoUploadField } from "@/components/admin/video-upload-field"
 import { RichTextEditor } from "@/components/rich-text-editor"
-import { isVideoUrl } from "@/lib/is-video-url"
+import { getGalleryItemMediaType } from "@/lib/gallery-item"
 import type {
   CardBlockItem,
+  GalleryItem,
+  GalleryMediaType,
   LinkItem,
   PageBlock,
 } from "@/types/content"
@@ -320,6 +322,16 @@ function CardgridEditor({
   )
 }
 
+function updateGalleryItem(
+  items: GalleryItem[],
+  index: number,
+  patch: GalleryItem
+): GalleryItem[] {
+  const next = [...items]
+  next[index] = { ...items[index], ...patch }
+  return next
+}
+
 function GalleryEditor({
   block,
   onChange,
@@ -327,7 +339,33 @@ function GalleryEditor({
   block: Extract<PageBlock, { _template: "gallery" }>
   onChange: (b: PageBlock) => void
 }) {
-  const images = block.galleryImages ?? []
+  const items = block.galleryImages ?? []
+
+  function setItems(galleryImages: GalleryItem[]) {
+    onChange({ ...block, galleryImages })
+  }
+
+  function setMediaType(index: number, galleryMediaType: GalleryMediaType) {
+    const item = items[index] ?? {}
+    if (galleryMediaType === "video") {
+      setItems(
+        updateGalleryItem(items, index, {
+          galleryMediaType: "video",
+          galleryVideo: item.galleryVideo || item.galleryImage || "",
+          galleryImage: "",
+        })
+      )
+      return
+    }
+    setItems(
+      updateGalleryItem(items, index, {
+        galleryMediaType: "image",
+        galleryImage: item.galleryImage || "",
+        galleryVideo: "",
+      })
+    )
+  }
+
   return (
     <div className="space-y-4">
       <div>
@@ -339,80 +377,91 @@ function GalleryEditor({
           className="w-full rounded border px-3 py-2"
         />
       </div>
-      {images.map((item, i) => {
-        const mediaType =
-          item.galleryMediaType ??
-          (isVideoUrl(item.galleryImage ?? "") ? "video" : "image")
+      {items.map((item, i) => {
+        const mediaType = getGalleryItemMediaType(item)
         return (
-        <div key={i} className="flex gap-4 rounded border p-3">
-          {mediaType === "video" ? (
-            <VideoUploadField
-              label="Video"
-              value={item.galleryImage ?? ""}
-              onChange={(galleryImage) => {
-                const next = [...images]
-                next[i] = { ...item, galleryImage, galleryMediaType: "video" }
-                onChange({ ...block, galleryImages: next })
-              }}
-            />
-          ) : (
-            <ImageUploadField
-              label="Image"
-              value={item.galleryImage ?? ""}
-              onChange={(galleryImage) => {
-                const next = [...images]
-                next[i] = { ...item, galleryImage, galleryMediaType: "image" }
-                onChange({ ...block, galleryImages: next })
-              }}
-            />
-          )}
-          <div className="flex-1 space-y-3">
-            <div>
-              <label className="mb-1 block text-sm font-medium">Caption</label>
-              <input
-                type="text"
-                value={item.caption ?? ""}
-                onChange={(e) => {
-                  const next = [...images]
-                  next[i] = { ...item, caption: e.target.value }
-                  onChange({ ...block, galleryImages: next })
-                }}
-                className="w-full rounded border px-3 py-2"
-              />
+          <div key={i} className="flex gap-4 rounded border p-3">
+            <div className="min-w-0 flex-1 space-y-3">
+              <div>
+                <label className="mb-1 block text-sm font-medium">Type</label>
+                <select
+                  value={mediaType}
+                  onChange={(e) =>
+                    setMediaType(i, e.target.value as GalleryMediaType)
+                  }
+                  className="rounded border px-3 py-2"
+                >
+                  <option value="image">Image</option>
+                  <option value="video">Video</option>
+                </select>
+              </div>
+              {mediaType === "video" ? (
+                <VideoUploadField
+                  label="Video"
+                  value={item.galleryVideo || item.galleryImage || ""}
+                  onChange={(galleryVideo) => {
+                    setItems(
+                      updateGalleryItem(items, i, {
+                        galleryVideo,
+                        galleryImage: "",
+                        galleryMediaType: "video",
+                      })
+                    )
+                  }}
+                />
+              ) : (
+                <ImageUploadField
+                  label="Image"
+                  value={item.galleryImage ?? ""}
+                  onChange={(galleryImage) => {
+                    setItems(
+                      updateGalleryItem(items, i, {
+                        galleryImage,
+                        galleryVideo: "",
+                        galleryMediaType: "image",
+                      })
+                    )
+                  }}
+                />
+              )}
+              <div>
+                <label className="mb-1 block text-sm font-medium">Caption</label>
+                <input
+                  type="text"
+                  value={item.caption ?? ""}
+                  onChange={(e) => {
+                    setItems(updateGalleryItem(items, i, { caption: e.target.value }))
+                  }}
+                  className="w-full rounded border px-3 py-2"
+                />
+              </div>
             </div>
             <button
               type="button"
-              onClick={() => {
-                const next = [...images]
-                next[i] = {
-                  ...item,
-                  galleryImage: "",
-                  galleryMediaType: mediaType === "video" ? "image" : "video",
-                }
-                onChange({ ...block, galleryImages: next })
-              }}
-              className="text-sm text-gray-600 hover:underline"
+              onClick={() => setItems(items.filter((_, j) => j !== i))}
+              className="self-end text-sm text-red-600 hover:underline"
             >
-              {mediaType === "video" ? "Switch to image" : "Switch to video"}
+              Remove
             </button>
           </div>
-          <button
-            type="button"
-            onClick={() => onChange({ ...block, galleryImages: images.filter((_, j) => j !== i) })}
-            className="self-end text-sm text-red-600 hover:underline"
-          >
-            Remove
-          </button>
-        </div>
         )
       })}
-      <button
-        type="button"
-        onClick={() => onChange({ ...block, galleryImages: [...images, {}] })}
-        className="text-sm text-gray-600 hover:underline"
-      >
-        + Add image or video
-      </button>
+      <div className="flex gap-4">
+        <button
+          type="button"
+          onClick={() => setItems([...items, { galleryMediaType: "image" }])}
+          className="text-sm text-gray-600 hover:underline"
+        >
+          + Add image
+        </button>
+        <button
+          type="button"
+          onClick={() => setItems([...items, { galleryMediaType: "video" }])}
+          className="text-sm text-gray-600 hover:underline"
+        >
+          + Add video
+        </button>
+      </div>
     </div>
   )
 }

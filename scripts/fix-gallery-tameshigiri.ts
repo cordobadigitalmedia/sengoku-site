@@ -36,6 +36,7 @@ async function main() {
   await loadEnvLocal()
   const result = await fixGalleryTameshigiriPage()
   console.log("Gallery page updated.")
+  console.log(`Gallery blocks: ${result.galleryBlockCount}`)
   console.log(`Removed cover sections: ${result.removedCoverSections}`)
   console.log(`Video present in gallery: ${result.videoPresentInGallery}`)
 }
