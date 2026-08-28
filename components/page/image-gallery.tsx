@@ -1,6 +1,7 @@
 import type { ReactElement } from "react"
 import Image from "next/image"
 
+import { GalleryVideo } from "@/components/page/gallery-video"
 import {
   getGalleryItemMediaType,
   getGalleryItemSrc,
@@ -16,28 +17,22 @@ export function ImageGallery(props: BlockGallery): ReactElement {
         const src = getGalleryItemSrc(item)!
         const mediaType = getGalleryItemMediaType(item)
         return (
-          <div key={item.caption ?? i}>
-            <div className={mediaType === "video" ? "relative h-80 bg-black" : "relative h-80"}>
-              {mediaType === "video" ? (
-                <video
-                  src={src}
-                  controls
-                  playsInline
-                  preload="metadata"
-                  className="size-full object-contain"
-                  aria-label={item.caption ?? "Gallery video"}
-                >
-                  Your browser does not support the video tag.
-                </video>
-              ) : (
+          <div
+            key={item.caption ?? i}
+            className={mediaType === "video" ? "col-span-full" : undefined}
+          >
+            {mediaType === "video" ? (
+              <GalleryVideo src={src} caption={item.caption} />
+            ) : (
+              <div className="relative h-80">
                 <Image
                   src={src}
                   fill
                   alt={item.caption ?? "Gallery Image"}
                   className="object-contain"
                 />
-              )}
-            </div>
+              </div>
+            )}
             {item.caption && (
               <div className="prose flex items-center justify-center gap-2 py-2">
                 {item.caption}
