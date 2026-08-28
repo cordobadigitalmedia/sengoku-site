@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache"
 
 import { fixGalleryTameshigiriPage } from "@/lib/fix-gallery-tameshigiri"
 
-import { requireAdmin } from "./actions"
+import { requireAdmin } from "@/app/admin/actions"
 
 export async function runGalleryTameshigiriFix() {
   await requireAdmin()

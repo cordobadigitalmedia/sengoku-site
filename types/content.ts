@@ -70,13 +70,18 @@ export type BlockCardgrid = {
   gridTitle?: string
 }
 
+export type GalleryMediaType = "image" | "video"
+
+export type GalleryItem = {
+  caption?: string
+  galleryMediaType?: GalleryMediaType
+  galleryImage?: string
+  galleryVideo?: string
+}
+
 export type BlockGallery = {
   _template: "gallery"
-  galleryImages?: Array<{
-    caption?: string
-    galleryImage?: string
-    galleryMediaType?: "image" | "video"
-  }>
+  galleryImages?: GalleryItem[]
   galleryTitle?: string
 }
 
