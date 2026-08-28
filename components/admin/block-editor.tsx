@@ -5,6 +5,7 @@ import { ChevronDown, ChevronUp, GripVertical, Trash2 } from "lucide-react"
 import { ImageUploadField } from "@/components/admin/image-upload-field"
 import { VideoUploadField } from "@/components/admin/video-upload-field"
 import { RichTextEditor } from "@/components/rich-text-editor"
+import { isVideoUrl } from "@/lib/is-video-url"
 import type {
   CardBlockItem,
   LinkItem,
@@ -338,29 +339,62 @@ function GalleryEditor({
           className="w-full rounded border px-3 py-2"
         />
       </div>
-      {images.map((item, i) => (
+      {images.map((item, i) => {
+        const mediaType =
+          item.galleryMediaType ??
+          (isVideoUrl(item.galleryImage ?? "") ? "video" : "image")
+        return (
         <div key={i} className="flex gap-4 rounded border p-3">
-          <ImageUploadField
-            label="Image"
-            value={item.galleryImage ?? ""}
-            onChange={(galleryImage) => {
-              const next = [...images]
-              next[i] = { ...item, galleryImage }
-              onChange({ ...block, galleryImages: next })
-            }}
-          />
-          <div className="flex-1">
-            <label className="mb-1 block text-sm font-medium">Caption</label>
-            <input
-              type="text"
-              value={item.caption ?? ""}
-              onChange={(e) => {
+          {mediaType === "video" ? (
+            <VideoUploadField
+              label="Video"
+              value={item.galleryImage ?? ""}
+              onChange={(galleryImage) => {
                 const next = [...images]
-                next[i] = { ...item, caption: e.target.value }
+                next[i] = { ...item, galleryImage, galleryMediaType: "video" }
                 onChange({ ...block, galleryImages: next })
               }}
-              className="w-full rounded border px-3 py-2"
             />
+          ) : (
+            <ImageUploadField
+              label="Image"
+              value={item.galleryImage ?? ""}
+              onChange={(galleryImage) => {
+                const next = [...images]
+                next[i] = { ...item, galleryImage, galleryMediaType: "image" }
+                onChange({ ...block, galleryImages: next })
+              }}
+            />
+          )}
+          <div className="flex-1 space-y-3">
+            <div>
+              <label className="mb-1 block text-sm font-medium">Caption</label>
+              <input
+                type="text"
+                value={item.caption ?? ""}
+                onChange={(e) => {
+                  const next = [...images]
+                  next[i] = { ...item, caption: e.target.value }
+                  onChange({ ...block, galleryImages: next })
+                }}
+                className="w-full rounded border px-3 py-2"
+              />
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                const next = [...images]
+                next[i] = {
+                  ...item,
+                  galleryImage: "",
+                  galleryMediaType: mediaType === "video" ? "image" : "video",
+                }
+                onChange({ ...block, galleryImages: next })
+              }}
+              className="text-sm text-gray-600 hover:underline"
+            >
+              {mediaType === "video" ? "Switch to image" : "Switch to video"}
+            </button>
           </div>
           <button
             type="button"
@@ -370,13 +404,14 @@ function GalleryEditor({
             Remove
           </button>
         </div>
-      ))}
+        )
+      })}
       <button
         type="button"
         onClick={() => onChange({ ...block, galleryImages: [...images, {}] })}
         className="text-sm text-gray-600 hover:underline"
       >
-        + Add image
+        + Add image or video
       </button>
     </div>
   )

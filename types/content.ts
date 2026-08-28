@@ -72,7 +72,11 @@ export type BlockCardgrid = {
 
 export type BlockGallery = {
   _template: "gallery"
-  galleryImages?: Array<{ caption?: string; galleryImage?: string }>
+  galleryImages?: Array<{
+    caption?: string
+    galleryImage?: string
+    galleryMediaType?: "image" | "video"
+  }>
   galleryTitle?: string
 }
 
